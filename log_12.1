@@ -1,0 +1,122 @@
+ > [app 17/18] RUN pip install ./submodules/diff-gaussian-rasterization:
+21.19   error: subprocess-exited-with-error
+21.19
+21.19   × python setup.py bdist_wheel did not run successfully.
+21.19   │ exit code: 1
+21.19   ╰─> [98 lines of output]
+21.19       No CUDA runtime is found, using CUDA_HOME='/usr/local/cuda'
+21.19       running bdist_wheel
+21.19       running build
+21.19       running build_py
+21.19       creating build
+21.19       creating build/lib.linux-x86_64-cpython-310
+21.19       creating build/lib.linux-x86_64-cpython-310/diff_gaussian_rasterization
+21.19       copying diff_gaussian_rasterization/__init__.py -> build/lib.linux-x86_64-cpython-310/diff_gaussian_rasterization
+21.19       running build_ext
+21.19       /opt/conda/envs/gaussian_splatting/lib/python3.10/site-packages/torch/utils/cpp_extension.py:424: UserWarning: There are no g++ version bounds defined for CUDA version 12.1
+21.19         warnings.warn(f'There are no {compiler_name} version bounds defined for CUDA version {cuda_str_version}')
+21.19       building 'diff_gaussian_rasterization._C' extension
+21.19       creating /root/gaussian-splatting/submodules/diff-gaussian-rasterization/build/temp.linux-x86_64-cpython-310
+21.19       creating /root/gaussian-splatting/submodules/diff-gaussian-rasterization/build/temp.linux-x86_64-cpython-310/cuda_rasterizer
+21.19       Emitting ninja build file /root/gaussian-splatting/submodules/diff-gaussian-rasterization/build/temp.linux-x86_64-cpython-310/build.ninja...
+21.19       Compiling objects...
+21.19       Allowing ninja to set a default number of workers... (overridable by setting the environment variable MAX_JOBS=N)
+21.19       [1/5] /usr/local/cuda/bin/nvcc  -I/opt/conda/envs/gaussian_splatting/lib/python3.10/site-packages/torch/include -I/opt/conda/envs/gaussian_splatting/lib/python3.10/site-packages/torch/include/torch/csrc/api/include -I/opt/conda/envs/gaussian_splatting/lib/python3.10/site-packages/torch/include/TH -I/opt/conda/envs/gaussian_splatting/lib/python3.10/site-packages/torch/include/THC -I/usr/local/cuda/include -I/opt/conda/envs/gaussian_splatting/include/python3.10 -c -c /root/gaussian-splatting/submodules/diff-gaussian-rasterization/cuda_rasterizer/backward.cu -o /root/gaussian-splatting/submodules/diff-gaussian-rasterization/build/temp.linux-x86_64-cpython-310/cuda_rasterizer/backward.o -D__CUDA_NO_HALF_OPERATORS__ -D__CUDA_NO_HALF_CONVERSIONS__ -D__CUDA_NO_BFLOAT16_CONVERSIONS__ -D__CUDA_NO_HALF2_OPERATORS__ --expt-relaxed-constexpr --compiler-options ''"'"'-fPIC'"'"'' -I/root/gaussian-splatting/submodules/diff-gaussian-rasterization/third_party/glm/ -DTORCH_API_INCLUDE_EXTENSION_H '-DPYBIND11_COMPILER_TYPE="_gcc"' '-DPYBIND11_STDLIB="_libstdcpp"' '-DPYBIND11_BUILD_ABI="_cxxabi1011"' -DTORCH_EXTENSION_NAME=_C -D_GLIBCXX_USE_CXX11_ABI=0 -gencode=arch=compute_35,code=sm_35 -gencode=arch=compute_50,code=sm_50 -gencode=arch=compute_60,code=sm_60 -gencode=arch=compute_61,code=sm_61 -gencode=arch=compute_70,code=sm_70 -gencode=arch=compute_75,code=sm_75 -gencode=arch=compute_80,code=sm_80 -gencode=arch=compute_86,code=sm_86 -std=c++17
+21.19       FAILED: /root/gaussian-splatting/submodules/diff-gaussian-rasterization/build/temp.linux-x86_64-cpython-310/cuda_rasterizer/backward.o
+21.19       /usr/local/cuda/bin/nvcc  -I/opt/conda/envs/gaussian_splatting/lib/python3.10/site-packages/torch/include -I/opt/conda/envs/gaussian_splatting/lib/python3.10/site-packages/torch/include/torch/csrc/api/include -I/opt/conda/envs/gaussian_splatting/lib/python3.10/site-packages/torch/include/TH -I/opt/conda/envs/gaussian_splatting/lib/python3.10/site-packages/torch/include/THC -I/usr/local/cuda/include -I/opt/conda/envs/gaussian_splatting/include/python3.10 -c -c /root/gaussian-splatting/submodules/diff-gaussian-rasterization/cuda_rasterizer/backward.cu -o /root/gaussian-splatting/submodules/diff-gaussian-rasterization/build/temp.linux-x86_64-cpython-310/cuda_rasterizer/backward.o -D__CUDA_NO_HALF_OPERATORS__ -D__CUDA_NO_HALF_CONVERSIONS__ -D__CUDA_NO_BFLOAT16_CONVERSIONS__ -D__CUDA_NO_HALF2_OPERATORS__ --expt-relaxed-constexpr --compiler-options ''"'"'-fPIC'"'"'' -I/root/gaussian-splatting/submodules/diff-gaussian-rasterization/third_party/glm/ -DTORCH_API_INCLUDE_EXTENSION_H '-DPYBIND11_COMPILER_TYPE="_gcc"' '-DPYBIND11_STDLIB="_libstdcpp"' '-DPYBIND11_BUILD_ABI="_cxxabi1011"' -DTORCH_EXTENSION_NAME=_C -D_GLIBCXX_USE_CXX11_ABI=0 -gencode=arch=compute_35,code=sm_35 -gencode=arch=compute_50,code=sm_50 -gencode=arch=compute_60,code=sm_60 -gencode=arch=compute_61,code=sm_61 -gencode=arch=compute_70,code=sm_70 -gencode=arch=compute_75,code=sm_75 -gencode=arch=compute_80,code=sm_80 -gencode=arch=compute_86,code=sm_86 -std=c++17
+21.19       nvcc fatal   : Unsupported gpu architecture 'compute_35'
+21.19       [2/5] /usr/local/cuda/bin/nvcc  -I/opt/conda/envs/gaussian_splatting/lib/python3.10/site-packages/torch/include -I/opt/conda/envs/gaussian_splatting/lib/python3.10/site-packages/torch/include/torch/csrc/api/include -I/opt/conda/envs/gaussian_splatting/lib/python3.10/site-packages/torch/include/TH -I/opt/conda/envs/gaussian_splatting/lib/python3.10/site-packages/torch/include/THC -I/usr/local/cuda/include -I/opt/conda/envs/gaussian_splatting/include/python3.10 -c -c /root/gaussian-splatting/submodules/diff-gaussian-rasterization/cuda_rasterizer/forward.cu -o /root/gaussian-splatting/submodules/diff-gaussian-rasterization/build/temp.linux-x86_64-cpython-310/cuda_rasterizer/forward.o -D__CUDA_NO_HALF_OPERATORS__ -D__CUDA_NO_HALF_CONVERSIONS__ -D__CUDA_NO_BFLOAT16_CONVERSIONS__ -D__CUDA_NO_HALF2_OPERATORS__ --expt-relaxed-constexpr --compiler-options ''"'"'-fPIC'"'"'' -I/root/gaussian-splatting/submodules/diff-gaussian-rasterization/third_party/glm/ -DTORCH_API_INCLUDE_EXTENSION_H '-DPYBIND11_COMPILER_TYPE="_gcc"' '-DPYBIND11_STDLIB="_libstdcpp"' '-DPYBIND11_BUILD_ABI="_cxxabi1011"' -DTORCH_EXTENSION_NAME=_C -D_GLIBCXX_USE_CXX11_ABI=0 -gencode=arch=compute_35,code=sm_35 -gencode=arch=compute_50,code=sm_50 -gencode=arch=compute_60,code=sm_60 -gencode=arch=compute_61,code=sm_61 -gencode=arch=compute_70,code=sm_70 -gencode=arch=compute_75,code=sm_75 -gencode=arch=compute_80,code=sm_80 -gencode=arch=compute_86,code=sm_86 -std=c++17
+21.19       FAILED: /root/gaussian-splatting/submodules/diff-gaussian-rasterization/build/temp.linux-x86_64-cpython-310/cuda_rasterizer/forward.o
+21.19       /usr/local/cuda/bin/nvcc  -I/opt/conda/envs/gaussian_splatting/lib/python3.10/site-packages/torch/include -I/opt/conda/envs/gaussian_splatting/lib/python3.10/site-packages/torch/include/torch/csrc/api/include -I/opt/conda/envs/gaussian_splatting/lib/python3.10/site-packages/torch/include/TH -I/opt/conda/envs/gaussian_splatting/lib/python3.10/site-packages/torch/include/THC -I/usr/local/cuda/include -I/opt/conda/envs/gaussian_splatting/include/python3.10 -c -c /root/gaussian-splatting/submodules/diff-gaussian-rasterization/cuda_rasterizer/forward.cu -o /root/gaussian-splatting/submodules/diff-gaussian-rasterization/build/temp.linux-x86_64-cpython-310/cuda_rasterizer/forward.o -D__CUDA_NO_HALF_OPERATORS__ -D__CUDA_NO_HALF_CONVERSIONS__ -D__CUDA_NO_BFLOAT16_CONVERSIONS__ -D__CUDA_NO_HALF2_OPERATORS__ --expt-relaxed-constexpr --compiler-options ''"'"'-fPIC'"'"'' -I/root/gaussian-splatting/submodules/diff-gaussian-rasterization/third_party/glm/ -DTORCH_API_INCLUDE_EXTENSION_H '-DPYBIND11_COMPILER_TYPE="_gcc"' '-DPYBIND11_STDLIB="_libstdcpp"' '-DPYBIND11_BUILD_ABI="_cxxabi1011"' -DTORCH_EXTENSION_NAME=_C -D_GLIBCXX_USE_CXX11_ABI=0 -gencode=arch=compute_35,code=sm_35 -gencode=arch=compute_50,code=sm_50 -gencode=arch=compute_60,code=sm_60 -gencode=arch=compute_61,code=sm_61 -gencode=arch=compute_70,code=sm_70 -gencode=arch=compute_75,code=sm_75 -gencode=arch=compute_80,code=sm_80 -gencode=arch=compute_86,code=sm_86 -std=c++17
+21.19       nvcc fatal   : Unsupported gpu architecture 'compute_35'
+21.19       [3/5] /usr/local/cuda/bin/nvcc  -I/opt/conda/envs/gaussian_splatting/lib/python3.10/site-packages/torch/include -I/opt/conda/envs/gaussian_splatting/lib/python3.10/site-packages/torch/include/torch/csrc/api/include -I/opt/conda/envs/gaussian_splatting/lib/python3.10/site-packages/torch/include/TH -I/opt/conda/envs/gaussian_splatting/lib/python3.10/site-packages/torch/include/THC -I/usr/local/cuda/include -I/opt/conda/envs/gaussian_splatting/include/python3.10 -c -c /root/gaussian-splatting/submodules/diff-gaussian-rasterization/cuda_rasterizer/rasterizer_impl.cu -o /root/gaussian-splatting/submodules/diff-gaussian-rasterization/build/temp.linux-x86_64-cpython-310/cuda_rasterizer/rasterizer_impl.o -D__CUDA_NO_HALF_OPERATORS__ -D__CUDA_NO_HALF_CONVERSIONS__ -D__CUDA_NO_BFLOAT16_CONVERSIONS__ -D__CUDA_NO_HALF2_OPERATORS__ --expt-relaxed-constexpr --compiler-options ''"'"'-fPIC'"'"'' -I/root/gaussian-splatting/submodules/diff-gaussian-rasterization/third_party/glm/ -DTORCH_API_INCLUDE_EXTENSION_H '-DPYBIND11_COMPILER_TYPE="_gcc"' '-DPYBIND11_STDLIB="_libstdcpp"' '-DPYBIND11_BUILD_ABI="_cxxabi1011"' -DTORCH_EXTENSION_NAME=_C -D_GLIBCXX_USE_CXX11_ABI=0 -gencode=arch=compute_35,code=sm_35 -gencode=arch=compute_50,code=sm_50 -gencode=arch=compute_60,code=sm_60 -gencode=arch=compute_61,code=sm_61 -gencode=arch=compute_70,code=sm_70 -gencode=arch=compute_75,code=sm_75 -gencode=arch=compute_80,code=sm_80 -gencode=arch=compute_86,code=sm_86 -std=c++17
+21.19       FAILED: /root/gaussian-splatting/submodules/diff-gaussian-rasterization/build/temp.linux-x86_64-cpython-310/cuda_rasterizer/rasterizer_impl.o
+21.19       /usr/local/cuda/bin/nvcc  -I/opt/conda/envs/gaussian_splatting/lib/python3.10/site-packages/torch/include -I/opt/conda/envs/gaussian_splatting/lib/python3.10/site-packages/torch/include/torch/csrc/api/include -I/opt/conda/envs/gaussian_splatting/lib/python3.10/site-packages/torch/include/TH -I/opt/conda/envs/gaussian_splatting/lib/python3.10/site-packages/torch/include/THC -I/usr/local/cuda/include -I/opt/conda/envs/gaussian_splatting/include/python3.10 -c -c /root/gaussian-splatting/submodules/diff-gaussian-rasterization/cuda_rasterizer/rasterizer_impl.cu -o /root/gaussian-splatting/submodules/diff-gaussian-rasterization/build/temp.linux-x86_64-cpython-310/cuda_rasterizer/rasterizer_impl.o -D__CUDA_NO_HALF_OPERATORS__ -D__CUDA_NO_HALF_CONVERSIONS__ -D__CUDA_NO_BFLOAT16_CONVERSIONS__ -D__CUDA_NO_HALF2_OPERATORS__ --expt-relaxed-constexpr --compiler-options ''"'"'-fPIC'"'"'' -I/root/gaussian-splatting/submodules/diff-gaussian-rasterization/third_party/glm/ -DTORCH_API_INCLUDE_EXTENSION_H '-DPYBIND11_COMPILER_TYPE="_gcc"' '-DPYBIND11_STDLIB="_libstdcpp"' '-DPYBIND11_BUILD_ABI="_cxxabi1011"' -DTORCH_EXTENSION_NAME=_C -D_GLIBCXX_USE_CXX11_ABI=0 -gencode=arch=compute_35,code=sm_35 -gencode=arch=compute_50,code=sm_50 -gencode=arch=compute_60,code=sm_60 -gencode=arch=compute_61,code=sm_61 -gencode=arch=compute_70,code=sm_70 -gencode=arch=compute_75,code=sm_75 -gencode=arch=compute_80,code=sm_80 -gencode=arch=compute_86,code=sm_86 -std=c++17
+21.19       nvcc fatal   : Unsupported gpu architecture 'compute_35'
+21.19       [4/5] /usr/local/cuda/bin/nvcc  -I/opt/conda/envs/gaussian_splatting/lib/python3.10/site-packages/torch/include -I/opt/conda/envs/gaussian_splatting/lib/python3.10/site-packages/torch/include/torch/csrc/api/include -I/opt/conda/envs/gaussian_splatting/lib/python3.10/site-packages/torch/include/TH -I/opt/conda/envs/gaussian_splatting/lib/python3.10/site-packages/torch/include/THC -I/usr/local/cuda/include -I/opt/conda/envs/gaussian_splatting/include/python3.10 -c -c /root/gaussian-splatting/submodules/diff-gaussian-rasterization/rasterize_points.cu -o /root/gaussian-splatting/submodules/diff-gaussian-rasterization/build/temp.linux-x86_64-cpython-310/rasterize_points.o -D__CUDA_NO_HALF_OPERATORS__ -D__CUDA_NO_HALF_CONVERSIONS__ -D__CUDA_NO_BFLOAT16_CONVERSIONS__ -D__CUDA_NO_HALF2_OPERATORS__ --expt-relaxed-constexpr --compiler-options ''"'"'-fPIC'"'"'' -I/root/gaussian-splatting/submodules/diff-gaussian-rasterization/third_party/glm/ -DTORCH_API_INCLUDE_EXTENSION_H '-DPYBIND11_COMPILER_TYPE="_gcc"' '-DPYBIND11_STDLIB="_libstdcpp"' '-DPYBIND11_BUILD_ABI="_cxxabi1011"' -DTORCH_EXTENSION_NAME=_C -D_GLIBCXX_USE_CXX11_ABI=0 -gencode=arch=compute_35,code=sm_35 -gencode=arch=compute_50,code=sm_50 -gencode=arch=compute_60,code=sm_60 -gencode=arch=compute_61,code=sm_61 -gencode=arch=compute_70,code=sm_70 -gencode=arch=compute_75,code=sm_75 -gencode=arch=compute_80,code=sm_80 -gencode=arch=compute_86,code=sm_86 -std=c++17
+21.19       FAILED: /root/gaussian-splatting/submodules/diff-gaussian-rasterization/build/temp.linux-x86_64-cpython-310/rasterize_points.o
+21.19       /usr/local/cuda/bin/nvcc  -I/opt/conda/envs/gaussian_splatting/lib/python3.10/site-packages/torch/include -I/opt/conda/envs/gaussian_splatting/lib/python3.10/site-packages/torch/include/torch/csrc/api/include -I/opt/conda/envs/gaussian_splatting/lib/python3.10/site-packages/torch/include/TH -I/opt/conda/envs/gaussian_splatting/lib/python3.10/site-packages/torch/include/THC -I/usr/local/cuda/include -I/opt/conda/envs/gaussian_splatting/include/python3.10 -c -c /root/gaussian-splatting/submodules/diff-gaussian-rasterization/rasterize_points.cu -o /root/gaussian-splatting/submodules/diff-gaussian-rasterization/build/temp.linux-x86_64-cpython-310/rasterize_points.o -D__CUDA_NO_HALF_OPERATORS__ -D__CUDA_NO_HALF_CONVERSIONS__ -D__CUDA_NO_BFLOAT16_CONVERSIONS__ -D__CUDA_NO_HALF2_OPERATORS__ --expt-relaxed-constexpr --compiler-options ''"'"'-fPIC'"'"'' -I/root/gaussian-splatting/submodules/diff-gaussian-rasterization/third_party/glm/ -DTORCH_API_INCLUDE_EXTENSION_H '-DPYBIND11_COMPILER_TYPE="_gcc"' '-DPYBIND11_STDLIB="_libstdcpp"' '-DPYBIND11_BUILD_ABI="_cxxabi1011"' -DTORCH_EXTENSION_NAME=_C -D_GLIBCXX_USE_CXX11_ABI=0 -gencode=arch=compute_35,code=sm_35 -gencode=arch=compute_50,code=sm_50 -gencode=arch=compute_60,code=sm_60 -gencode=arch=compute_61,code=sm_61 -gencode=arch=compute_70,code=sm_70 -gencode=arch=compute_75,code=sm_75 -gencode=arch=compute_80,code=sm_80 -gencode=arch=compute_86,code=sm_86 -std=c++17
+21.19       nvcc fatal   : Unsupported gpu architecture 'compute_35'
+21.19       [5/5] c++ -MMD -MF /root/gaussian-splatting/submodules/diff-gaussian-rasterization/build/temp.linux-x86_64-cpython-310/ext.o.d -pthread -B /opt/conda/envs/gaussian_splatting/compiler_compat -Wno-unused-result -Wsign-compare -DNDEBUG -fwrapv -O2 -Wall -fPIC -O2 -isystem /opt/conda/envs/gaussian_splatting/include -fPIC -O2 -isystem /opt/conda/envs/gaussian_splatting/include -fPIC -I/opt/conda/envs/gaussian_splatting/lib/python3.10/site-packages/torch/include -I/opt/conda/envs/gaussian_splatting/lib/python3.10/site-packages/torch/include/torch/csrc/api/include -I/opt/conda/envs/gaussian_splatting/lib/python3.10/site-packages/torch/include/TH -I/opt/conda/envs/gaussian_splatting/lib/python3.10/site-packages/torch/include/THC -I/usr/local/cuda/include -I/opt/conda/envs/gaussian_splatting/include/python3.10 -c -c /root/gaussian-splatting/submodules/diff-gaussian-rasterization/ext.cpp -o /root/gaussian-splatting/submodules/diff-gaussian-rasterization/build/temp.linux-x86_64-cpython-310/ext.o -DTORCH_API_INCLUDE_EXTENSION_H '-DPYBIND11_COMPILER_TYPE="_gcc"' '-DPYBIND11_STDLIB="_libstdcpp"' '-DPYBIND11_BUILD_ABI="_cxxabi1011"' -DTORCH_EXTENSION_NAME=_C -D_GLIBCXX_USE_CXX11_ABI=0 -std=c++17
+21.19       ninja: build stopped: subcommand failed.
+21.19       Traceback (most recent call last):
+21.19         File "/opt/conda/envs/gaussian_splatting/lib/python3.10/site-packages/torch/utils/cpp_extension.py", line 2100, in _run_ninja_build
+21.19           subprocess.run(
+21.19         File "/opt/conda/envs/gaussian_splatting/lib/python3.10/subprocess.py", line 526, in run
+21.19           raise CalledProcessError(retcode, process.args,
+21.19       subprocess.CalledProcessError: Command '['ninja', '-v']' returned non-zero exit status 1.
+21.19
+21.19       The above exception was the direct cause of the following exception:
+21.19
+21.19       Traceback (most recent call last):
+21.19         File "<string>", line 2, in <module>
+21.19         File "<pip-setuptools-caller>", line 34, in <module>
+21.19         File "/root/gaussian-splatting/submodules/diff-gaussian-rasterization/setup.py", line 17, in <module>
+21.19           setup(
+21.19         File "/opt/conda/envs/gaussian_splatting/lib/python3.10/site-packages/setuptools/__init__.py", line 103, in setup
+21.19           return distutils.core.setup(**attrs)
+21.19         File "/opt/conda/envs/gaussian_splatting/lib/python3.10/site-packages/setuptools/_distutils/core.py", line 185, in setup
+21.19           return run_commands(dist)
+21.19         File "/opt/conda/envs/gaussian_splatting/lib/python3.10/site-packages/setuptools/_distutils/core.py", line 201, in run_commands
+21.19           dist.run_commands()
+21.19         File "/opt/conda/envs/gaussian_splatting/lib/python3.10/site-packages/setuptools/_distutils/dist.py", line 969, in run_commands
+21.19           self.run_command(cmd)
+21.19         File "/opt/conda/envs/gaussian_splatting/lib/python3.10/site-packages/setuptools/dist.py", line 963, in run_command
+21.19           super().run_command(command)
+21.19         File "/opt/conda/envs/gaussian_splatting/lib/python3.10/site-packages/setuptools/_distutils/dist.py", line 988, in run_command
+21.19           cmd_obj.run()
+21.19         File "/opt/conda/envs/gaussian_splatting/lib/python3.10/site-packages/wheel/bdist_wheel.py", line 368, in run
+21.19           self.run_command("build")
+21.19         File "/opt/conda/envs/gaussian_splatting/lib/python3.10/site-packages/setuptools/_distutils/cmd.py", line 318, in run_command
+21.19           self.distribution.run_command(command)
+21.19         File "/opt/conda/envs/gaussian_splatting/lib/python3.10/site-packages/setuptools/dist.py", line 963, in run_command
+21.19           super().run_command(command)
+21.19         File "/opt/conda/envs/gaussian_splatting/lib/python3.10/site-packages/setuptools/_distutils/dist.py", line 988, in run_command
+21.19           cmd_obj.run()
+21.19         File "/opt/conda/envs/gaussian_splatting/lib/python3.10/site-packages/setuptools/_distutils/command/build.py", line 131, in run
+21.19           self.run_command(cmd_name)
+21.19         File "/opt/conda/envs/gaussian_splatting/lib/python3.10/site-packages/setuptools/_distutils/cmd.py", line 318, in run_command
+21.19           self.distribution.run_command(command)
+21.19         File "/opt/conda/envs/gaussian_splatting/lib/python3.10/site-packages/setuptools/dist.py", line 963, in run_command
+21.19           super().run_command(command)
+21.19         File "/opt/conda/envs/gaussian_splatting/lib/python3.10/site-packages/setuptools/_distutils/dist.py", line 988, in run_command
+21.19           cmd_obj.run()
+21.19         File "/opt/conda/envs/gaussian_splatting/lib/python3.10/site-packages/setuptools/command/build_ext.py", line 88, in run
+21.19           _build_ext.run(self)
+21.19         File "/opt/conda/envs/gaussian_splatting/lib/python3.10/site-packages/setuptools/_distutils/command/build_ext.py", line 345, in run
+21.19           self.build_extensions()
+21.19         File "/opt/conda/envs/gaussian_splatting/lib/python3.10/site-packages/torch/utils/cpp_extension.py", line 873, in build_extensions
+21.19           build_ext.build_extensions(self)
+21.19         File "/opt/conda/envs/gaussian_splatting/lib/python3.10/site-packages/setuptools/_distutils/command/build_ext.py", line 467, in build_extensions
+21.19           self._build_extensions_serial()
+21.19         File "/opt/conda/envs/gaussian_splatting/lib/python3.10/site-packages/setuptools/_distutils/command/build_ext.py", line 493, in _build_extensions_serial
+21.19           self.build_extension(ext)
+21.19         File "/opt/conda/envs/gaussian_splatting/lib/python3.10/site-packages/setuptools/command/build_ext.py", line 249, in build_extension
+21.19           _build_ext.build_extension(self, ext)
+21.19         File "/opt/conda/envs/gaussian_splatting/lib/python3.10/site-packages/setuptools/_distutils/command/build_ext.py", line 548, in build_extension
+21.19           objects = self.compiler.compile(
+21.19         File "/opt/conda/envs/gaussian_splatting/lib/python3.10/site-packages/torch/utils/cpp_extension.py", line 686, in unix_wrap_ninja_compile
+21.19           _write_ninja_file_and_compile_objects(
+21.19         File "/opt/conda/envs/gaussian_splatting/lib/python3.10/site-packages/torch/utils/cpp_extension.py", line 1774, in _write_ninja_file_and_compile_objects
+21.19           _run_ninja_build(
+21.19         File "/opt/conda/envs/gaussian_splatting/lib/python3.10/site-packages/torch/utils/cpp_extension.py", line 2116, in _run_ninja_build
+21.19           raise RuntimeError(message) from e
+21.19       RuntimeError: Error compiling objects for extension
+21.19       [end of output]
+21.19
+21.19   note: This error originates from a subprocess, and is likely not a problem with pip.
+21.19   ERROR: Failed building wheel for diff_gaussian_rasterization
+21.19 ERROR: Could not build wheels for diff_gaussian_rasterization, which is required to install pyproject.toml-based projects
+21.19
+21.19 ERROR conda.cli.main_run:execute(124): `conda run /bin/bash -c pip install ./submodules/diff-gaussian-rasterization` failed. (See above for error)
+21.19 Processing ./submodules/diff-gaussian-rasterization
+21.19   Preparing metadata (setup.py): started
+21.19   Preparing metadata (setup.py): finished with status 'done'
+21.19 Building wheels for collected packages: diff_gaussian_rasterization
+21.19   Building wheel for diff_gaussian_rasterization (setup.py): started
+21.19   Building wheel for diff_gaussian_rasterization (setup.py): finished with status 'error'
+21.19   Running setup.py clean for diff_gaussian_rasterization
+21.19 Failed to build diff_gaussian_rasterization
+21.19
+------
+failed to solve: process "conda run -n gaussian_splatting /bin/bash -c pip install ./submodules/diff-gaussian-rasterization" did not complete successfully: exit code: 1

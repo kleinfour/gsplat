@@ -1,0 +1,17 @@
+name: scaffold_gs
+channels:
+  - pytorch
+  - pyg
+  - nvidia
+  - conda-forge
+  - defaults
+dependencies:
+  - plyfile
+  - python=3.10
+  - pip
+  - pytorch-cuda=12.1
+  - torchaudio
+  - torchvision
+  - tqdm
+  - pytorch-scatter
+  - colmap

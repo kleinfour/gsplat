@@ -1,0 +1,21 @@
+name: 4d_gaussian_splatting
+channels:
+  - pytorch
+  - nvidia
+  - conda-forge
+  - defaults
+dependencies:
+  - plyfile
+  - python=3.10
+  - pip
+  - pytorch-cuda=12.1
+  - torchaudio
+  - torchvision
+  - tqdm
+  - colmap
+  - pip:
+      - tqdm==4.66.1
+      - torchmetrics==0.11.4
+      - imagesize==1.4.1
+      - kornia==0.6.12
+      - omegaconf==2.3.0

@@ -1,0 +1,47 @@
+FROM nvidia/cuda:12.1.0-devel-ubuntu22.04
+
+# Install base utilities
+ENV DEBIAN_FRONTEND=noninteractive
+RUN apt-get update \
+    && apt-get install -y build-essential wget ninja-build unzip libgl-dev gcc-10 g++-10 git\
+    && apt-get clean \
+    && rm -rf /var/lib/apt/lists/*
+
+# Install miniconda
+ENV CONDA_DIR /opt/conda
+RUN wget --quiet https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh -O ~/miniconda.sh && \
+    /bin/bash ~/miniconda.sh -b -p /opt/conda
+
+# Put conda in path so we can use conda activate
+ENV PATH=$CONDA_DIR/bin:$PATH
+
+RUN conda update -n base conda
+RUN conda install -n base conda-libmamba-solver
+RUN conda config --set solver libmamba
+RUN conda install jupyter -y
+WORKDIR /root/
+
+RUN git clone https://github.com/szymanowiczs/splatter-image.git --recursive
+# COPY splatter-image /root/splatter-image
+
+ENV TORCH_CUDA_ARCH_LIST="8.6"
+
+WORKDIR /root/splatter-image
+# Install splatter-image
+
+COPY environment_splatter-image.yaml /root/environment.yaml 
+RUN update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-10 100
+RUN update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-10 100
+RUN conda env create -f /root/environment.yaml
+
+RUN conda init bash
+SHELL ["conda", "run", "-n", "splatter-image", "/bin/bash", "-c"]
+RUN pip install -r requirements.txt
+
+# Install diff-gaussian-rasterization
+RUN git clone https://github.com/graphdeco-inria/gaussian-splatting --recursive
+RUN pip install ./gaussian-splatting/submodules/diff-gaussian-rasterization
+
+# COPY data /root/splatter-image/data
+
+ENTRYPOINT ["conda", "run", "--no-capture-output", "-n", "splatter-image", "jupyter", "notebook", "--ip=0.0.0.0", "--port=8080", "--allow-root"]

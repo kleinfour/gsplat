@@ -1,0 +1,94 @@
+# Comments are provided throughout this file to help you get started.
+# If you need more help, visit the Docker compose reference guide at
+# https://docs.docker.com/go/compose-spec-reference/
+
+# Here the instructions define your application as a service called "app".
+# This service is built from the Dockerfile in the current directory.
+# You can add other services your application may depend on here, such as a
+# database or a cache. For examples, see the Awesome Compose repository:
+# https://github.com/docker/awesome-compose
+services:
+  gaussian-splatting:
+    build:
+      context: .
+      # dockerfile: Dockerfile.gsplat
+      dockerfile: Dockerfiles/Dockerfile.gaussian-splatting
+    ports:
+      - 8080:8080
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: 1
+              capabilities: [gpu]
+
+  efficientgaussian:
+    build:
+      context: .
+      dockerfile: Dockerfiles/Dockerfile.efficientgaussian
+    ports:
+      - 8080:8080
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: 1
+              capabilities: [gpu]
+  
+  splatter-image:
+    build:
+      context: .
+      dockerfile: Dockerfiles/Dockerfile.splatter-image
+    ports:
+      - 8080:8080
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: 1
+              capabilities: [gpu]
+
+  4d-gaussian-splatting:
+    build:
+      context: .
+      dockerfile: Dockerfiles/Dockerfile.4d-gaussian-splatting
+    ports:
+      - 8080:8080
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: 1
+              capabilities: [gpu]
+
+  gaussian-grouping:
+    build:
+      context: .
+      dockerfile: Dockerfiles/Dockerfile.gaussian-grouping
+    ports:
+      - 8080:8080
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: 1
+              capabilities: [gpu]
+
+  scaffold-gs:
+    build:
+      context: .
+      dockerfile: Dockerfiles/Dockerfile.scaffold-gs
+    ports:
+      - 8080:8080
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: 1
+              capabilities: [gpu]

@@ -1,0 +1,45 @@
+Note:
+    - I should change TORCH_CUDA_ARCH_LIST for other GPUs.
+
+Cloud instance commands:
+    Install docker:
+        sudo apt-get update
+        sudo apt-get install docker.io
+        sudo systemctl enable docker
+        sudo apt-get install docker-compose
+
+    Pull mipnerf360 dataset
+        wget http://storage.googleapis.com/gresearch/refraw360/360_v2.zip
+        unzip 360_v2.zip
+
+    
+
+Dockerfile status:
+    - gaussian-splatting: passed
+    - efficientgaussian: 
+    - 4d-gaussian-splatting: ERROR: Failed building wheel for pointops2
+
+    splatter-image: dataset reader can't load SRN/srn_cars for some reason.
+        Extra commands:
+        Need to download srn_chairs.zip (or any other datasets) from pixel_nerf_data: https://drive.google.com/drive/folders/1PsT3uKwqHHD2bEEHkIXB99AlIjtmrEiR
+        Run pip install gdown
+        Download datasets:
+            cd splatter-image
+            srn_cars.zip (2.2 GB): gdown https://drive.google.com/uc?id=19yDsEJjx9zNpOKz9o6AaK-E8ED6taJWU
+            srn_chairs.zip (3.6 GB): gdown https://drive.google.com/uc?id=1VWtRZkC4_ON6EBhNNBTag-BwsjPB2Yc8
+        Unzip: unzip srn_cars.zip -d srn_cars
+        set env in scene/srn.py:
+            cd splatter-image \
+            && mkdir data/SRN
+            && sed -i '12s@.*@SHAPENET_DATASET_ROOT="/root/splatter-image/data/SRN"@' scene/srn.py
+        set env in scene/co3d.py:
+            cd splatter-image \
+            && sed -i '25s@.*@CO3D_DATASET_ROOT="/root/splatter-image/data"@' scene/co3d.py
+            #note: also need to do preprocessing step
+        run training:
+            python train_network.py +dataset=cars
+        train 2-view model
+            python train_network.py +dataset=cars cam_embd=pose_pos data.input_images=2 opt.imgs_per_obj=5
+        evaluate:
+            python eval.py [model directory path]
+            to save renders modify variable save_vis and out_folder in eval.py

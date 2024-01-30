@@ -1,0 +1,15 @@
+name: splatter-image
+channels:
+  - pytorch
+  - nvidia
+  - conda-forge
+  - defaults
+dependencies:
+  - plyfile
+  - python=3.8
+  - pip
+  - pytorch-cuda=12.1
+  - torchaudio
+  - torchvision
+  - tqdm
+  - colmap

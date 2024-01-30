@@ -1,0 +1,56 @@
+FROM nvidia/cuda:12.1.0-devel-ubuntu22.04
+
+# Install base utilities
+ENV DEBIAN_FRONTEND=noninteractive
+RUN apt-get update \
+    && apt-get install -y build-essential wget ninja-build unzip libgl-dev gcc-10 g++-10 git\
+    && apt-get clean \
+    && rm -rf /var/lib/apt/lists/*
+
+# Install miniconda
+ENV CONDA_DIR /opt/conda
+RUN wget --quiet https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh -O ~/miniconda.sh && \
+    /bin/bash ~/miniconda.sh -b -p /opt/conda
+
+# Put conda in path so we can use conda activate
+ENV PATH=$CONDA_DIR/bin:$PATH
+
+RUN conda update -n base conda
+RUN conda install -n base conda-libmamba-solver
+RUN conda config --set solver libmamba
+RUN conda install jupyter -y
+WORKDIR /root/
+
+RUN git clone https://github.com/lkeab/gaussian-grouping.git --recursive
+# COPY gaussian-grouping /root/gaussian-grouping
+
+ENV TORCH_CUDA_ARCH_LIST="8.6"
+
+WORKDIR /root/gaussian-grouping
+# Install gaussian-grouping
+
+COPY environment.yaml /root/environment.yaml
+RUN update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-10 100
+RUN update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-10 100
+RUN conda env create -f /root/environment.yaml
+
+RUN conda init bash
+SHELL ["conda", "run", "-n", "gaussian_splatting", "/bin/bash", "-c"]
+RUN pip install plyfile
+RUN pip install tqdm scipy wandb opencv-python scikit-learn lpips
+RUN pip install ./submodules/diff-gaussian-rasterization
+RUN pip install ./submodules/simple-knn
+
+# Install DEVA
+WORKDIR /root/gaussian-grouping/Tracking-Anything-with-DEVA
+RUN pip install -e .
+RUN bash scripts/download_models.sh
+RUN git clone https://github.com/hkchengrex/Grounded-Segment-Anything.git
+WORKDIR /root/gaussian-grouping/Tracking-Anything-with-DEVA/Grounded-Segment-Anything
+RUN export AM_I_DOCKER=True && export BUILD_WITH_CUDA=True
+RUN python -m pip install -e segment_anything
+RUN python -m pip install -e GroundingDINO
+
+COPY data /root/gaussian-grouping/data
+WORKDIR /root/
+ENTRYPOINT ["conda", "run", "--no-capture-output", "-n", "gaussian_splatting", "jupyter", "notebook", "--ip=0.0.0.0", "--port=8080", "--allow-root"]
