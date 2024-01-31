@@ -24,7 +24,8 @@ WORKDIR /root/
 RUN git clone https://github.com/city-super/Scaffold-GS.git --recursive scaffold-gs
 # COPY gaussian-splatting /root/scaffold-gs
 
-ENV TORCH_CUDA_ARCH_LIST="8.6"
+ARG TORCH_CUDA_ARCH_LIST="8.6"
+ENV TORCH_CUDA_ARCH_LIST=${TORCH_CUDA_ARCH_LIST}
 
 WORKDIR /root/scaffold-gs
 # Install scaffold-gs

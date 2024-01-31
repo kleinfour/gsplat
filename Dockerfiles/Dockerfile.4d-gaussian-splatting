@@ -24,7 +24,8 @@ WORKDIR /root/
 RUN git clone git clone https://github.com/fudan-zvg/4d-gaussian-splatting --recursive
 # COPY 4d-gaussian-splatting /root/4d-gaussian-splatting
 
-ENV TORCH_CUDA_ARCH_LIST="8.6"
+ARG TORCH_CUDA_ARCH_LIST="8.6"
+ENV TORCH_CUDA_ARCH_LIST=${TORCH_CUDA_ARCH_LIST}
 
 WORKDIR /root/4d-gaussian-splatting
 # Install 4d-gaussian-splatting 

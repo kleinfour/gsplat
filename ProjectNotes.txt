@@ -1,5 +1,6 @@
 Note:
     - I should change TORCH_CUDA_ARCH_LIST for other GPUs.
+    - P100: nvcc --version --> GPU Arch is Pascal. Use `docker build --build-arg TORCH_CUDA_ARCH_LIST="6.0,6.1,6.2"`
 
 Cloud instance commands:
     Install docker:

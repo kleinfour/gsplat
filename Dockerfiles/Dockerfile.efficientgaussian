@@ -24,7 +24,8 @@ WORKDIR /root/
 RUN git clone https://github.com/Sharath-girish/efficientgaussian.git --recursive
 # COPY efficientgaussian /root/efficientgaussian
 
-ENV TORCH_CUDA_ARCH_LIST="8.6"
+ARG TORCH_CUDA_ARCH_LIST="8.6"
+ENV TORCH_CUDA_ARCH_LIST=${TORCH_CUDA_ARCH_LIST}
 
 WORKDIR /root/efficientgaussian
 # Install efficientgaussian

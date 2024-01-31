@@ -24,7 +24,8 @@ WORKDIR /root/
 RUN git clone https://github.com/szymanowiczs/splatter-image.git --recursive
 # COPY splatter-image /root/splatter-image
 
-ENV TORCH_CUDA_ARCH_LIST="8.6"
+ARG TORCH_CUDA_ARCH_LIST="8.6"
+ENV TORCH_CUDA_ARCH_LIST=${TORCH_CUDA_ARCH_LIST}
 
 WORKDIR /root/splatter-image
 # Install splatter-image
